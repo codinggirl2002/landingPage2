@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Parentalité</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/maman4.avif')  no-repeat center center/cover;
+
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="g"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23g)"><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="url(%23g)"><animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" begin="1s"/></circle><circle cx="30" cy="70" r="1" fill="url(%23g)"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="2s"/></circle><circle cx="70" cy="80" r="2.5" fill="url(%23g)"><animate attributeName="opacity" values="0;1;0" dur="3.5s" repeatCount="indefinite" begin="0.5s"/></circle></svg>') repeat; */
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .urgency-badge {
+            display: inline-block;
+            background: #ee1b24;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        @keyframes pulse {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #f35928 0%, #fdd835 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            margin: 1rem;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: rgba(0, 0, 0);
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #f35928 0%, #d32f2f 100%);
+            border-radius: 2px;
+        }
+        
+        .pain-point {
+            background: #fff;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .pain-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(102,126,234,0.1), transparent);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .pain-card {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid #d32f2f;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,107,0.05) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .pain-card:hover::before {
+            transform: scale(1);
+        }
+
+        .pain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .pain-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pain-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #d32f2f;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pain-card p {
+            color: #666;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .solution {
+            background: white;
+            color: white;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .solution::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><polygon fill="rgba(255,255,255,0.1)" points="0,0 100,0 80,20 0,20"/></svg>') repeat-x;
+            opacity: 0.3;
+        }
+
+        .section-title {
+            color: #000;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-subtitle {
+            color: #666;
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 30px;
+            margin: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .learning-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learning-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .learning-card:hover::before {
+            opacity: 1;
+        }
+
+        .learning-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .learning-card .number {
+            background: linear-gradient(135deg, #f35928 0%, #f34228 40%, #ee1b24 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .learning-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .learning-card p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .formatrice-section {
+            background: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .formatrice-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"><animate attributeName="r" values="1;3;1" dur="4s" repeatCount="indefinite"/></circle><circle cx="75" cy="75" r="2" fill="%23ffffff" opacity="0.15"><animate attributeName="r" values="2;4;2" dur="3s" repeatCount="indefinite"/></circle></svg>') repeat;
+            animation: floatSlow 15s ease-in-out infinite;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50%     { transform: translateY(-10px) rotate(2deg); }
+        }
+        .formatrice-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .formatrice-image {
+            flex: 0 0 300px;
+            position: relative;
+        }
+        .formatrice-avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+            font-size: 6rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .formatrice-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0%   { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50%  { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+        .formatrice-content {
+            flex: 1;
+            color: #666;
+        }
+        .formatrice-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            text-align: left;
+        }
+        .formatrice-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f35928;
+            margin-bottom: 1rem;
+        }
+        .formatrice-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+        .formatrice-highlights { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .benefit {
+            text-align: center;
+            color: white;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .benefit:hover {
+            transform: scale(1.05);
+        }
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .video-container {
+          position: relative;
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+          padding-top: 56.25%; /* ratio 16:9 */
+          background: #000;
+        }
+
+        .video-container video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .media-gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 20px;
+          margin: 20px 0;
+      }
+
+      .media-item img {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+        .testimonial {
+            background: #f35928;
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 0;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            opacity: 0.3;
+        }
+        .highlight-item {
+            background: rgba(255,255,255,0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .highlight-item:hover {
+            transform: translateY(-5px);
+        }
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .highlight-item h4 {
+            color: #f35928;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .gradient-border {
+            padding: 3px;
+            background: linear-gradient(135deg, #f35928 0%, #f34228 40%, #ee1b24 100%);
+            border-radius: 25px;
+            
+        }
+        .program-details {
+          background: white;
+          padding: 2rem;
+          border-radius: 20px;
+        }
+        .program-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #d9d9d96b;
+            border-radius: 10px;
+        }
+        .program-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #f35928 0%, #d32f2f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+        .footer {
+            background: white;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+        }
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s ease-out;
+        }
+        .modal-content {
+          background: white;
+          margin: 2% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .modal-header {
+            background: #f35928;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            color: #f35928;
+        }
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: rgb(180, 179, 179);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .close:hover {
+            opacity: 0.7;
+        }
+        .modal-body {
+            padding: 2rem;
+            color: black;
+        }
+        .form-group {
+            margin-bottom: 0.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(180, 179, 179, 0.589);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            color: #333;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(180, 179, 179, 0.185);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #f35928 0%, #fdd835 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        .success-message h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .pain-points {
+                grid-template-columns: 1fr;
+            }
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+            .floating-cta {
+                bottom: 20px;
+                right: 20px;
+            }
+            .formatrice-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .formatrice-image {
+                flex: none;
+            }
+            .formatrice-avatar {
+                width: 250px;
+                height: 250px;
+                font-size: 5rem;
+            }
+            .formatrice-content h2 {
+                text-align: center;
+            }
+            .formatrice-description {
+                text-align: center;
+            }
+            .formatrice-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+    
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="urgency-badge">⚠️ Formation Gratuite – Places Limitées</div>
+                <h1>Je ne reconnais plus mon ado que faire?</h1>
+                <p class="subtitle">
+                    Comment reprendre le contrôle sans crier, et sans se sentir impuissante ?
+                </p>
+                <a href="javascript:void(0);" class="cta-button" onclick="openModal()">🎯 Rejoindre la formation maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-point section">
+        <div class="container">
+            <h2 class="section-title" style="color: #333; margin-bottom: 30px;">Tu te reconnais dans ces situations ?</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <i class="fas fa-angry"></i>
+                    <h3>Insolent et provocateur</h3>
+                    <p>Ton ado te répond mal, te défie ouvertement et semble prendre plaisir à te pousser à bout.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-door-closed"></i>
+                    <h3>Fuyant et distant</h3>
+                    <p>Il s'enferme dans sa chambre, évite les conversations et semble vivre dans son propre monde.</p>
+                </div>
+                <div class="pain-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Punitions inefficaces</h3>
+                    <p>Tu as tout essayé : punitions, menaces, discussions... Rien ne fonctionne et tu te sens impuissante.</p>
+                </div>
+            </div>
+            <div style="text-align: center; font-size: 1.3rem; color: #666; margin-top: 40px;">
+                <strong>Au-delà de la douleur, il y a une lueur d'espoir. Il est encore temps d'agir autrement.</strong>
+            </div>
+        </div>
+    </section>
+
+     <!-- Solution Section -->
+     <section class="solution section">
+        <div class="container">
+            <h2 class="section-title">Ce que tu vas apprendre</h2>
+            <p class="section-subtitle">Une stratégie éducative ferme, bienveillante et efficace</p>
+            
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="number">1</div>
+                    <h3>Reconnaître les signaux d'alarme</h3>
+                    <p>Apprends à identifier quand ton ado commence à s'enfoncer dans les contre-valeurs avant qu'il ne soit trop tard.</p>
+                </div>
+                <div class="learning-card">
+                    <div class="number">2</div>
+                    <h3>Sortir du cycle destructeur</h3>
+                    <p>Brise le cercle vicieux punition-culpabilité-abandon qui vous épuise tous les deux.</p>
+                </div>
+                <div class="learning-card">
+                    <div class="number">3</div>
+                    <h3>Stratégie éducative efficace</h3>
+                    <p>Découvre une approche ferme ET bienveillante qui fonctionne vraiment avec les adolescents.</p>
+                </div>
+                <div class="learning-card">
+                    <div class="number">4</div>
+                    <h3>Préserver ta santé mentale</h3>
+                    <p>Apprends à prendre soin de toi tout en étant une mère présente et aimante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="formatrice-section">
+        <div class="formatrice-container">
+            <div class="formatrice-image">
+                <div class="formatrice-avatar">
+                    <img src="./img/visage.jpg" alt="" style="width: 350px; height: 350px; border-radius: 50%;">
+                </div>
+            </div>
+            <div class="formatrice-content">
+                <h2>Votre Formatrice</h2>
+                <div class="formatrice-name">Micheline SAME</div>
+                <div class="formatrice-description">
+                    C'est un savant mélange entre sagesse d'une ancienne enseignante, l'énergie d'une coach passionnée et le franc-parler d'une maman qui ne se laisse pas marcher sur les pieds ! La cinquantaine sonnée, elle a troqué la craie contre le micro et Internet, les bulletins scolaires contre des plans d'action pour mamans d'ados débordées.
+                    <br><br>
+                    Son super-pouvoir ? Transformer les cris et les conflits en conversations complices avec les ados. Coach parentale et psychologue engagée, Micheline SAME ne vend pas du rêve, elle vend des résultats. Armée de son vécu de maman, de ses multiples formations, et de son bon sens redoutable, elle aide les mamans à reprendre le contrôle sans perdre leur tendresse.
+                    <br><br>
+                    Toujours avec une pointe d'humour, un brin de fermeté et un regard bienveillant, elle redonne aux familles ce qu'elles croyaient avoir perdu : la paix, l'espoir… et parfois même quelques fous rires !
+                </div>
+                <div class="formatrice-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🎓</span>
+                        <h4>Ancienne Enseignante</h4>
+                        <p>Expertise pédagogique</p>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">💼</span>
+                        <h4>Coach Parentale & Psychologue</h4>
+                        <p>Accompagnement personnalisé</p>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">👥</span>
+                        <h4>Maman Expérimentée</h4>
+                        <p>Vécu authentique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section">
+        <div class="container">
+            <h2 id="benefits">Des Temoignages poignants…</h2>
+            <div class="benefits">
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <!-- Déclaration des différentes sources (formats) -->
+                        <source src="./img/temv1.mp4" type="video/mp4">
+                        <!-- Message de secours si la balise n'est pas supportée -->
+                        Votre navigateur ne supporte pas la balise <code>video</code>.
+                      </video>
+                </div>
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <!-- Déclaration des différentes sources (formats) -->
+                        <source src="./img/temv2.mp4" type="video/mp4">
+                        <!-- Message de secours si la balise n'est pas supportée -->
+                        Votre navigateur ne supporte pas la balise <code>video</code>.
+                      </video>
+                </div>
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <!-- Déclaration des différentes sources (formats) -->
+                        <source src="./img/temv3.mp4" type="video/mp4">
+                        <!-- Message de secours si la balise n'est pas supportée -->
+                        Votre navigateur ne supporte pas la balise <code>video</code>.
+                      </video>
+                </div>
+            </div>
+                <div class="media-gallery">
+                    <div class="media-item">
+                        <img src="img/temi1.jpeg" alt="Image 1">
+                    </div>
+                    <div class="media-item">
+                        <img src="img/temi2.jpeg" alt="Image 2">
+                    </div>
+                    <div class="media-item">
+                        <img src="img/temi3.jpeg" alt="Image 3">
+                    </div>
+                </div>
+            
+                <div class="testimonial">
+                    <p style="font-size: 1.3rem; font-style: italic; margin-bottom: 1.5rem;">
+                        "Essayez cette formation et faites vous aussi parties de ces mamans qui aujourd'hui vivent en toutes sérénite avec leurs adolescents.
+                        Nous vous proposons une approche bienveillante basée sur l'empathie et la compréhension mutuelle avec des stratégies concrètes
+                        et une expérience partagée."
+                    </p>
+                    <strong>Souvenez vous que vous n'etes pas seule dans ce combat..</strong>
+                </div>
+        </div>
+    </section>
+
+    
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 2.2rem; margin-bottom: 17px; color: #000;">Il est temps de retrouver la sérénité</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 15px; opacity: 0.9; color: #666;">
+                Ne laisse plus cette situation t'épuiser. Ta relation avec ton ado peut changer.
+            </p>
+            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem;">📅 Informations Pratiques</h3>
+                <p><strong>📅 Date :</strong> Dimanche 15 Juin 2025</p>
+                <p><strong>🕐 Horaire :</strong> 19h00 (UTC+1)</p>
+                <p><strong>📍 Lieu :</strong> En ligne via Zoom</p>
+                <p><strong>👥 Places :</strong> Limitées à 20 participants pour un suivi personnalisé</p>
+            </div>
+            <a href="javascript:void(0);" class="cta-button" onclick="openModal()" style="font-size: 1.4rem; padding: 20px 50px;" >
+                🚀 Je Réserve Ma Place Maintenant
+            </a>
+
+            <div style="margin-top: 2rem;">
+                <p style="margin-bottom: 1rem;">Rejoignez notre communauté :</p>
+                <a href="https://www.facebook.com/Lesparentsdado" target="_blank" class="cta-button" style="margin: 0.5rem; padding: 12px 25px; font-size: 1rem;">
+                    📘 Facebook
+                </a>
+                <a href="https://chat.whatsapp.com/Jwel6RT6Yi06T1e5UbkhO9" target="_blank" class="cta-button" style="margin: 0.5rem; padding: 12px 25px; font-size: 1rem;">
+                    💬 WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+   
+    <div class="floating-cta">
+        <a href="javascript:void(0);" class="cta-button" style="padding: 15px 25px;" onclick="openModal()">📞 S'Inscrire</a>
+    </div>
+    <hr>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Formation Parentalité. Transformez votre relation avec votre adolescent.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                Rejoignez notre communauté sur 
+                <a href="https://www.facebook.com/Lesparentsdado" target="_blank" style="color: #11398a; text-decoration: none;">Facebook</a> 
+                et 
+                <a href="https://chat.whatsapp.com/Jwel6RT6Yi06T1e5UbkhO9" target="_blank" style="color: #0e8d3c; text-decoration: none;">WhatsApp</a>
+            </p>
+        </div>
+    </footer>
+
+   
+    <div id="inscriptionModal" class="modal">
+        <div class="modal-content">
+            <div-- class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>🎯 Inscription Formation</h2>
+                <p>Dimanche 8 Juin 2025 – 19h00 (UTC+1)</p>
+            </div-->
+            <div class="modal-body">
+                <form id="inscriptionForm"  >
+
+                    <div class="form-group">
+                        <label for="nom">Nom complet *</label>
+                        <input type="text" id="nom" name="nom"  required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email"  required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Téléphone</label>
+                        <input type="tel" id="telephone" name="telephone" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age_ado">Âge de votre adolescent</label>
+                        <select id="age_ado" name="age_ado">
+                            <option value="">Sélectionnez…</option>
+                            <option value="11-12" >11-12 ans</option>
+                            <option value="13-14" >13-14 ans</option>
+                            <option value="15-16" >15-16 ans</option>
+                            <option value="17-18" >17-18 ans</option>
+                            <option value="19+"   >19 ans et plus</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="principale_difficulte">Quelle est votre principale difficulté avec votre ado ?</label>
+                        <textarea id="principale_difficulte" name="principale_difficulte" placeholder="Communication, conflits, distance émotionnelle, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attentes">Qu'attendez-vous de cette formation ?</label>
+                        <textarea id="attentes" name="attentes" placeholder="Vos objectifs et espoirs…"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">🚀 Confirmer Mon Inscription</button>
+                </form>
+
+                <div id="successMessage" style="display:none">
+                    <h3>✅ Inscription Confirmée !</h3>
+                    <p>Merci pour votre inscription ! Nous vous disons a bientôt.</p>
+                    <p style="margin-top: 1rem;">En attendant, rejoignez notre communauté :</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="https://www.facebook.com/Lesparentsdado" target="_blank" class="cta-button" style="margin: 0.5rem; padding: 10px 20px; font-size: 0.9rem;">📘 Facebook</a>
+                        <a href="https://chat.whatsapp.com/Jwel6RT6Yi06T1e5UbkhO9" target="_blank" class="cta-button" style="margin: 0.5rem; padding: 10px 20px; font-size: 0.9rem;">💬 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts pour la logique dans le cas qu'on utilise firebase -->
+    <!-- <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-analytics.js";
+        import { getDatabase, ref, push , set } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5guEMQysqI9BqgsM-n9jZvPCKaSWkeLQ",
+            authDomain: "formation-parentalite2.firebaseapp.com",
+            databaseURL:"https://formation-parentalite2-default-rtdb.firebaseio.com",
+            projectId: "formation-parentalite2",
+            storageBucket: "formation-parentalite2.firebasestorage.app",
+            messagingSenderId: "893570358790",
+            appId: "1:893570358790:web:782482d6c2204034dced87",
+            measurementId: "G-PZ7F4Y0T1D"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+        const form = document.getElementById('inscriptionForm');
+        const networkErrorDiv = document.getElementById('networkError');
+
+        //fonctions pour afficher ou masquer le message d'erreur reseau.
+        function showNetworkError() {
+        networkErrorDiv.style.display = 'block';
+        }
+        function hideNetworkError() {
+        networkErrorDiv.style.display = 'none';
+        }
+
+        // détecte le passage hors-ligne / en-ligne
+        window.addEventListener('offline', () => {
+        showNetworkError();
+        });
+        window.addEventListener('online', () => {
+        hideNetworkError();
+        });
+
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            hideNetworkError(); // on cache d’éventuels anciens msg
+
+            const data = {
+            nom:             form.nom.value,
+            email:           form.email.value,
+            telephone:       form.telephone.value,
+            age_ado:         form.age_ado.value,
+            principale_diff: form.principale_difficulte.value,
+            attentes:        form.attentes.value,
+            timestamp:       new Date().toISOString()
+            };
+            // push() ajoute un nœud unique sous /inscriptions
+            const inscriptionsRef = ref(db, 'inscriptions');
+            push(inscriptionsRef, data)
+                .then(() => {
+                form.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                })
+                .catch(err => {
+                    // s’il y a une erreur réseau ou permissions, on le signale ici
+                    console.error(err);
+                    showNetworkError();
+                });    
+        });
+    </script> -->
+
+    <!-- <script>
+        //animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // IntersectionObserver pour les animations au scroll
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.pain-point, .benefit, .program-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // Fonctions pour ouvrir / fermer la modal
+        function openModal() {
+            document.getElementById('inscriptionModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('inscriptionModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('inscriptionModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        
+        // Smooth scroll sur les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        
+    </script> -->
+
+    <script src="script.js"></script>
+  
+</body>
+</html>
