@@ -1,4 +1,4 @@
-//fonctions pour les animations.
+//fonctions pour les animations
 
 document.addEventListener('DOMContentLoaded', function () {
     // IntersectionObserver pour les animations au scroll
